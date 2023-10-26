@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  max-width: 100%;
+}
+
+body {
+  width: 100vw;
+  min-height: 100dvh;
+  font-family: "Montserrat", sans-serif;
+  background-color: #E5E7EB;
+  padding: 1.5rem 16px;
+}
+
+.container{
+  width: 100%;
+  max-width: 600px;
+  padding: 30px 22px;
+  margin-inline: auto;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+h1{
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.sub_heading,
+.gif p{
+  font-size: 16px;
+  padding: 0 0 4px;
+  margin: 2px 0 0;
+  color: #6B7280;
+}
+
+.gif{
+  border-top: 2px solid rgb(196, 207, 232);
+}
+
+.gif p{
+  margin: 16px 0;
+}
+
+.display img{
+  height: 200px;
+}
+
+form{
+  margin-top: 16px;
+  display: flex ;
+  flex-direction: column;
+}
+
+form input{
+  background: #f3f4f6;
+  height: 46px;
+  padding-left: 16px;
+  font-size: 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+form p{
+  padding: 16px;
+  background-color: #F9FAFB;
+  color: #000000;
+  margin: 5px 0;
+  border: 8px;
+}
+
+form button{
+  width: 100%;
+  height: 48px;
+  background-color: #8a93a3;
+  color: #000000;
+  border: 1px solid #8a93a3;
+  border-radius: 8px;
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color .3s ease;
+}
+
+form button:disabled{
+  background-color: rgb(231, 231, 231);
+  border-color: rgb(231, 231, 231);
+  color: #8a93a3;
+}
+
+.error_text{
+  color: red;
+}

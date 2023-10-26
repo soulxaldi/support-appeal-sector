@@ -1,0 +1,285 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  max-width: 100%;
+}
+
+body {
+  width: 100vw;
+  min-height: 100dvh;
+  font-family: "Montserrat", sans-serif;
+}
+
+header {
+  height: max-content;
+  background-color: white;
+  padding: 40px 20px 0;
+}
+
+.top,
+.logo,
+.logo nav ul,
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+}
+
+.bottom {
+  margin-top: 30px;
+  padding-bottom: 10px;
+}
+
+.logo {
+  gap: 0;
+}
+
+.logo p {
+  font-size: 18px;
+  margin: 0 80px 0 4px;
+}
+
+.logo ul li {
+  color: #747474;
+}
+
+.top button {
+  width: 148px;
+  height: 36px;
+  background-color: #445661;
+  color: #ffffff;
+  padding: 0 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+}
+
+main {
+  background: rgb(254, 246, 255);
+  background: linear-gradient(157deg, rgb(254, 246, 255) 0%, rgba(251, 252, 255, 1) 50%);
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+aside {
+  padding: 30px 36px 0 80px;
+}
+
+.aside_content {
+  width: 391.64px;
+}
+
+h1,
+h2 {
+  font-size: 26px;
+  font-weight: 500;
+  font-family: "Montserrat", sans-serif;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  line-height: 30px;
+}
+
+.aside_content p {
+  font-size: 18px;
+  margin-top: 12px;
+  line-height: 27px;
+}
+
+.aside_content a {
+  font-size: 18px;
+  color: rgb(32, 137, 248);
+  margin-top: 8px;
+}
+
+.aside_content h3 {
+  margin: 1.5rem 0 16px 0;
+}
+
+.action_list li {
+  width: 400px;
+  height: 64px;
+  padding-left: 24px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  gap: 20px;
+}
+
+.action_list li i {
+  font-size: 25px;
+}
+
+.action_list li.active {
+  border-radius: 0.5rem;
+  background-color: rgb(52 72 84/1);
+  color: #ffffff;
+}
+
+.side_content {
+  padding: 60px 0 0 40px;
+  border-left: 2px solid #e5e7eb;
+}
+
+.side_content h2 {
+  margin-top: 15px;
+}
+
+.section_desc {
+  padding: 12px 0 0;
+  margin: 0 80px 0 0;
+  font-size: 18px;
+  color: #1c2b33;
+}
+
+section form {
+  width: 100%;
+  max-width: 700px;
+  margin-top: 3rem;
+}
+
+.form_group,
+input {
+  width: 100%;
+  position: relative;
+  background: #ffffff;
+}
+
+.form_group input {
+  height: 76px;
+  border: none;
+  padding: 12px 0 0 24px;
+  font-size: 18px;
+  outline: none;
+  margin: 1px;
+  transition: border 0.3s ease;
+  border-radius: 2px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.form_group.first,
+.form_group.first input {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.form_group.last,
+.form_group.last textarea,
+.box_shadow {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.form_group:not(.form_group.last) {
+  border: 2px solid transparent;
+  border-bottom-color: #e5e7eb;
+}
+
+.form_group {
+  margin-bottom: 1px;
+  display: flex;
+}
+
+.form_group input:focus,
+.form_group textarea:focus  {
+  outline: 2px solid #0b92f2;
+}
+
+.form_group label {
+  position: absolute;
+  top: 10px;
+  left: 24px;
+  color: #454545;
+  z-index: 2;
+  font-size: 14px;
+}
+
+.button_group {
+  margin-top: 1.5rem;
+  text-align: right;
+}
+
+.button_group button {
+  width: 110px;
+  height: 40px;
+  border-radius: 6px;
+  border: none;
+  background-color: #1872f2;
+  font-size: 20px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.no_navigate {
+  cursor: pointer;
+}
+
+form .box_shadow{
+  box-shadow: 0 0 #0000,0 0 #0000,0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);
+}
+
+/* PASSWORD & RECOVERY */
+#password_section h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 16px;
+}
+
+#password_section p {
+  font-size: 15px;
+  color: rgb(135, 151, 163);
+}
+
+#password_section .form_group,
+#password_section .form_group input {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-color: transparent;
+}
+
+section:last-of-type {
+  display: none;
+}
+
+small {
+  font-size: 12px;
+  font-style: italic;
+  color: red;
+}
+
+@media (max-width: 676px) {
+  nav,
+  .top button {
+    display: none;
+  }
+
+  .bottom{
+    font-size: 14px;
+  }
+
+  main{
+    grid-template-columns: none;
+  }
+
+  aside {
+    display: none;
+  }
+
+  .section_desc{
+    width: 100%;
+  }
+
+  .side_content {
+    padding: 40px 16px 0 16px;
+    margin-bottom: 1.5rem;
+  }
+}
